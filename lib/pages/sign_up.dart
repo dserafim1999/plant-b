@@ -13,33 +13,31 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   TextEditingController userName = TextEditingController();
+  TextEditingController userBirthDate = TextEditingController();
   TextEditingController userPass = TextEditingController();
+  TextEditingController userConfirmPass = TextEditingController();
   TextEditingController userEmail = TextEditingController();
-  TextEditingController userPh = TextEditingController();
+  TextEditingController userId = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xff86C24B),
       body: Padding(
         padding: EdgeInsets.only(top: 50.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Separator(height: 50.0),
-              Text(
-                'Create new account',
-                style: headline1,
-              ),
               Separator(height: 10.0),
               Text(
-                'Please fill in the form to continue',
-                style: headline3,
+                'Sign Up',
+                style: headline1,
               ),
-              Separator(height: 60.0),
+              Separator(height: 30.0),
               InputBox(
                 controller: userName,
                 keyBordType: TextInputType.name,
-                hintTxt: 'Full Name',
+                hintTxt: 'Username',
               ),
               InputBox(
                 controller: userEmail,
@@ -47,20 +45,31 @@ class _SignUpPageState extends State<SignUpPage> {
                 hintTxt: 'Email Address',
               ),
               InputBox(
-                controller: userPh,
+                controller: userId,
                 keyBordType: TextInputType.phone,
-                hintTxt: 'Phone Number',
+                hintTxt: 'Identification Number',
+              ),
+              InputBox(
+                controller: userBirthDate,
+                keyBordType: TextInputType.phone,
+                hintTxt: 'Birth Date',
               ),
               InputBox(
                 controller: userPass,
                 isObs: true,
                 hintTxt: 'Password',
               ),
-              Separator(height: 80.0),
+              InputBox(
+                controller: userConfirmPass,
+                isObs: true,
+                hintTxt: 'Confirm Password',
+              ),
+              Separator(height: 50.0),
               MainButton(
                 onTap: () {},
                 text: 'Sign Up',
-                btnColor: Colors.blue,
+                txtColor: Colors.white,
+                btnColor: Color(0xff63982E),
               ),
               Separator(height: 20.0),
               TextButton(

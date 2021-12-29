@@ -29,7 +29,7 @@ class _SignInState extends State<SignIn> {
                 'assets/logo_text.png',
                 width: 300,
               ),
-              Separator(height: 100.0),
+              Separator(height: 80.0),
               InputBox(
                 controller: userName,
                 hintTxt: 'Username',
@@ -60,7 +60,7 @@ class _SignInState extends State<SignIn> {
                   children: [
                     MainButton(
                       onTap: () {},
-                      text: 'Sign in',
+                      text: 'Sign In',
                       txtColor: Colors.white,
                       btnColor: Color(0xff63982E),
                     ),
@@ -75,7 +75,7 @@ class _SignInState extends State<SignIn> {
                       child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                            text: 'Don\' have an account? ',
+                            text: 'Don\'t have an account? ',
                             style: headline.copyWith(
                               fontSize: 14.0,
                             ),
