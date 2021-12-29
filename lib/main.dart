@@ -4,6 +4,7 @@ import 'package:plant_b/pages/rewards/rewards.dart';
 import 'package:plant_b/pages/scanner/scanner.dart';
 import 'package:plant_b/pages/leaderboard/leaderboard.dart';
 import 'package:plant_b/pages/profile/profile.dart';
+import 'package:plant_b/pages/sign_in.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,17 +19,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: const MyHomePage(),
+      home: const SignIn(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
