@@ -40,7 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _screens = [
     const ActivitiesMap(),
     const Rewards(),
-    const Scanner(),
     const Leaderboard(),
     const Profile(),
   ];
