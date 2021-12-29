@@ -63,8 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: onTabTapped,
             selectedItemColor: const Color(0xff86C24B),
             unselectedItemColor: Colors.grey[350],
-            showUnselectedLabels: true,
-            showSelectedLabels: true,
+            iconSize: 30,
             type: BottomNavigationBarType.fixed,
             items: const [
               BottomNavigationBarItem(
@@ -74,10 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.spa),
                 label: "Rewards",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.center_focus_strong),
-                label: "Scanner",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.insert_chart),

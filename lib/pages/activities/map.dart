@@ -10,8 +10,14 @@ class ActivitiesMap extends StatefulWidget {
 class _ActivitiesMapState extends State<ActivitiesMap> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Activities Map"),
+    return Scaffold(
+      backgroundColor: const Color(0xff86C24B),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.center_focus_strong),
+        backgroundColor: const Color(0xff63982E),
+        onPressed: () {},
+      ),
+      body: const Text("Activities Map"),
     );
   }
 }
