@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:async';
 
 class ActivitiesMap extends StatefulWidget {
   const ActivitiesMap({Key? key}) : super(key: key);
@@ -17,16 +18,18 @@ class _ActivitiesMapState extends State<ActivitiesMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: const GoogleMap(
+          //mapType: MapType.hybrid,
+          initialCameraPosition: _initialCameraPosition,
+          myLocationButtonEnabled: false,
+          zoomControlsEnabled: false,
+        ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.center_focus_strong),
         backgroundColor: const Color(0xff63982E),
         onPressed: () {},
       ),
-      body: const GoogleMap(
-        initialCameraPosition: _initialCameraPosition,
-        myLocationButtonEnabled: false,
-        zoomControlsEnabled: false,
-      ),
     );
   }
+
 }
