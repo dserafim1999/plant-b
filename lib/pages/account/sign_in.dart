@@ -3,7 +3,7 @@ import 'package:plant_b/core/separator.dart';
 import 'package:plant_b/core/styles.dart';
 import 'package:plant_b/widget/input_box.dart';
 import 'package:plant_b/widget/main_button.dart';
-import 'package:plant_b/pages/sign_up.dart';
+import 'package:plant_b/pages/account/sign_up.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -67,10 +67,10 @@ class _SignInState extends State<SignIn> {
                     Separator(height: 20.0),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (builder) => SignUpPage()));
+                                builder: (builder) => const SignUpPage()));
                       },
                       child: RichText(
                         text: TextSpan(children: [

@@ -4,7 +4,7 @@ import 'package:plant_b/pages/rewards/rewards.dart';
 import 'package:plant_b/pages/scanner/scanner.dart';
 import 'package:plant_b/pages/leaderboard/leaderboard.dart';
 import 'package:plant_b/pages/profile/profile.dart';
-import 'package:plant_b/pages/sign_in.dart';
+import 'package:plant_b/pages/account/sign_in.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,19 +22,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       //home: const MyHomePage(),
-      home: const MyHomePage(),
+      home: const SignIn(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [

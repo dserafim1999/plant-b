@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/separator.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:plant_b/pages/account/welcome_screen.dart';
 import 'package:plant_b/widget/main_button.dart';
 import 'package:plant_b/widget/input_box.dart';
 
@@ -66,7 +67,12 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Separator(height: 50.0),
               MainButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+                  );
+                },
                 text: 'Sign Up',
                 txtColor: Colors.white,
                 btnColor: Color(0xff63982E),
