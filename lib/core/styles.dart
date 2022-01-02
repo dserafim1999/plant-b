@@ -27,6 +27,12 @@ const TextStyle headline3 = TextStyle(
   color: Color(0xff63982E),
   fontWeight: FontWeight.bold,
 );
+
+const TextStyle headline4 = TextStyle(
+  fontSize: 16,
+  color: Colors.black,
+);
+
 const TextStyle hintStyle = TextStyle(
   fontSize: 18,
   color: Colors.grey,
