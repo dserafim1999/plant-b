@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const TextStyle headline = TextStyle(
   fontSize: 28,
-  color: Colors.white,
+  color: Colors.black,
   fontWeight: FontWeight.bold,
 );
 
@@ -29,7 +29,7 @@ const TextStyle headline3 = TextStyle(
 );
 
 const TextStyle headline4 = TextStyle(
-  fontSize: 16,
+  fontSize: 14,
   color: Colors.black,
 );
 

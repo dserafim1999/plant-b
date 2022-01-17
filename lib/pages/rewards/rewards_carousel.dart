@@ -3,6 +3,7 @@ import 'package:plant_b/models/ticket.model.dart';
 import 'package:plant_b/models/discount.model.dart';
 import 'package:plant_b/core/styles.dart';
 import 'package:plant_b/core/carousel_item.dart';
+import 'package:plant_b/popups/discount_popup.dart';
 
 
 class RewardsCarousel extends StatelessWidget {
@@ -10,6 +11,13 @@ class RewardsCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future openDiscountsDialog() => showDialog(
+        context: context,
+        builder: (BuildContext context) {
+            return DiscountPopup();
+        }
+    );
+
     return Column(
       children: <Widget>[
         const SizedBox(height: 40),
@@ -32,7 +40,7 @@ class RewardsCarousel extends StatelessWidget {
               itemCount: discounts.length,
               itemBuilder: (BuildContext context, int index) {
                 Discount discount = discounts[index];
-                return CarouselItem(label: discount.name);
+                return CarouselItem(label: discount.name, onTap: openDiscountsDialog);
               }
           ),
         ),
