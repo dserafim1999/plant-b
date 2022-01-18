@@ -56,7 +56,6 @@ class _RewardsCarouselState extends State<RewardsCarousel> {
                   projectSnap.hasData == false) {
                 return Container();
               } else if (projectSnap.hasData) {
-                var discounts = projectSnap.data!;
                 return  ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: projectSnap.data.length,
@@ -98,7 +97,6 @@ class _RewardsCarouselState extends State<RewardsCarousel> {
                   projectSnap.hasData == false) {
                 return Container();
               } else if (projectSnap.hasData) {
-                var discounts = projectSnap.data!;
                 return  ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: projectSnap.data.length,

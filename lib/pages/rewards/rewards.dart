@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/models/discount.model.dart';
+import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/pages/rewards/rewards_carousel.dart';
 import 'package:plant_b/core/styles.dart';
 
@@ -34,9 +35,9 @@ class Rewards extends StatelessWidget {
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const <Widget>[
+                            children: <Widget>[
                               Text(
-                                "18900",
+                                loggedUser.token_amount.toString(),
                                 style: TextStyle(
                                     fontSize: 25
                                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/models/discount.model.dart';
+import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/pages/activities/map.dart';
 import 'package:plant_b/pages/rewards/rewards.dart';
 import 'package:plant_b/pages/scanner/scanner.dart';
@@ -22,7 +23,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      //home: const MyHomePage(),
       home: const SignIn(),
     );
   }
@@ -36,7 +36,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
   final List<Widget> _screens = [
     const ActivitiesMap(),
@@ -49,6 +49,12 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fakeLogin();
   }
 
   @override

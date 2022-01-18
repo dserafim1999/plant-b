@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/pages/profile/profile_carousel.dart';
 import 'package:plant_b/core/styles.dart';
 
@@ -29,8 +30,8 @@ class _ProfileState extends State<Profile> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     const SizedBox(height: 20),
-                    const Text(
-                      "John Smith",
+                    Text(
+                      loggedUser.name,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,
@@ -47,9 +48,9 @@ class _ProfileState extends State<Profile> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const <Widget>[
+                          children: <Widget>[
                             Text(
-                              "18900",
+                              loggedUser.token_amount.toString(),
                               style: TextStyle(
                                   fontSize: 25
                               ),

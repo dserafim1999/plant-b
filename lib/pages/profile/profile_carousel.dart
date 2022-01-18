@@ -26,7 +26,7 @@ class ProfileCarousel extends StatelessWidget {
             ],),
         ),
         const SizedBox(height: 20),
-        SizedBox(
+        /*SizedBox(
           height: 300,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -40,7 +40,7 @@ class ProfileCarousel extends StatelessWidget {
                 );
               }
           ),
-        ),
+        ),*/
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
