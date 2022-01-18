@@ -4,7 +4,7 @@ import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/pages/activities/map.dart';
 import 'package:plant_b/pages/rewards/rewards.dart';
 import 'package:plant_b/pages/scanner/scanner.dart';
-import 'package:plant_b/pages/leaderboard/leaderboard.dart';
+import 'package:plant_b/pages/social/social.dart';
 import 'package:plant_b/pages/profile/profile.dart';
 import 'package:plant_b/pages/account/sign_in.dart';
 
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _screens = [
     const ActivitiesMap(),
     const Rewards(),
-    const Leaderboard(),
+    const Social(),
     const Profile(),
   ];
 
@@ -81,8 +81,8 @@ class _HomePageState extends State<HomePage> {
                 label: "Rewards",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.insert_chart),
-                label: "Leaderboard",
+                icon: Icon(Icons.supervisor_account),
+                label: "Social",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),
