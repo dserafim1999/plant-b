@@ -1,67 +1,65 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:plant_b/core/url.dart';
+
+Future getAllDiscounts() async {
+  final response = await http.get(Uri.parse(url + '/discounts'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    return List<Discount>.from(l.map((model)=> Discount.fromJson(model)));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load discounts');
+  }
+}
+
+Future getDiscount(String code) {
+  return http.get(Uri.parse(url+'/discounts/$code'));
+}
+
 class Discount {
-  int tokens;
-  int percentage;
-  String description;
-  String location;
+  String qr_code;
+  String type;
+  int amount;
+  int token_cost;
   String shop;
-  String name;
+  double location_x;
+  double location_y;
+  String description;
   //String imageUrl;
 
   Discount({
-    required this.tokens,
-    required this.percentage,
-    required this.description,
-    required this.location,
+    required this.qr_code,
+    required this.type,
+    required this.amount,
+    required this.token_cost,
     required this.shop,
-    required this.name,
+    required this.location_x,
+    required this.location_y,
+    required this.description,
     //required this.imageUrl,
   });
-}
 
-List<Discount> discounts = [
-  Discount(
-    tokens: 100,
-    percentage: 10,
-    description: "kdsj dknd adnj jk vrj jjdnkmdc m scknsc mcnjknmsc k cjncek kjcn ik jm jkmrk mjrj f",
-    location: "Leiria",
-    shop: "Loja",
-    name: "10% Off Trousers",
-    //required this.imageUrl,
-  ),
-  Discount(
-    tokens: 300,
-    percentage: 20,
-    description: "kdsj dknd adnj jk vrj jjdnkmdc m scknsc mcnjknmsc k cjncek kjcn ik jm jkmrk mjrj f",
-    location: "Leiria",
-    shop: "Loja",
-    name: "20% Off Vegetables",
-    //required this.imageUrl,
-  ),
-  Discount(
-    tokens: 500,
-    percentage: 20,
-    description: "kdsj dknd adnj jk vrj jjdnkmdc m scknsc mcnjknmsc k cjncek kjcn ik jm jkmrk mjrj f",
-    location: "Leiria",
-    shop: "Loja",
-    name: "10% Off Cardigans",
-    //required this.imageUrl,
-  ),
-  Discount(
-    tokens: 200,
-    percentage: 10,
-    description: "kdsj dknd adnj jk vrj jjdnkmdc m scknsc mcnjknmsc k cjncek kjcn ik jm jkmrk mjrj f",
-    location: "Leiria",
-    shop: "Loja",
-    name: "10% Off Beer",
-    //required this.imageUrl,
-  ),
-  Discount(
-    tokens: 100,
-    percentage: 10,
-    description: "kdsj dknd adnj jk vrj jjdnkmdc m scknsc mcnjknmsc k cjncek kjcn ik jm jkmrk mjrj f",
-    location: "Leiria",
-    shop: "Loja",
-    name: "10% Off Eco Toilet Paper and other stuff to test spacing",
-    //required this.imageUrl,
-  ),
-];
+  String getLabel() {
+    return amount.toString() + "% - " + shop;
+  }
+
+  factory Discount.fromJson(Map<String, dynamic> json) {
+    return Discount(
+        qr_code: json['qr_code'],
+        type: json['type'],
+        amount: json['amount'],
+        token_cost: json['token_cost'],
+        shop: json['shop'],
+        location_x: json['location_x'],
+        location_y: json['location_y'],
+        description: json['description']
+    );
+  }
+
+}

@@ -7,9 +7,14 @@ import 'package:plant_b/popups/discount_popup.dart';
 import 'package:plant_b/popups/ticket_popup.dart';
 
 
-class RewardsCarousel extends StatelessWidget {
+class RewardsCarousel extends StatefulWidget {
   const RewardsCarousel({Key? key}) : super(key: key);
 
+  @override
+  State<RewardsCarousel> createState() => _RewardsCarouselState();
+}
+
+class _RewardsCarouselState extends State<RewardsCarousel> {
   @override
   Widget build(BuildContext context) {
     Future openDiscountsDialog(Discount discount) => showDialog(
@@ -43,18 +48,32 @@ class RewardsCarousel extends StatelessWidget {
         const SizedBox(height: 20),
         SizedBox(
           height: 300,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: discounts.length,
-              itemBuilder: (BuildContext context, int index) {
-                Discount discount = discounts[index];
-                return CarouselItem(
-                    label: discount.name,
-                    tokens: discount.tokens.toString(),
-                    positive: false,
-                    onTap: () { openDiscountsDialog(discount); }
-                    );
+          child: FutureBuilder(
+            initialData: const [],
+            future: getAllDiscounts(),
+            builder: (context, AsyncSnapshot projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.none &&
+                  projectSnap.hasData == false) {
+                return Container();
+              } else if (projectSnap.hasData) {
+                var discounts = projectSnap.data!;
+                return  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: projectSnap.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Discount discount = projectSnap.data[index];
+                      return CarouselItem(
+                          label: discount.getLabel(),
+                          tokens: discount.token_cost.toString(),
+                          positive: false,
+                          onTap: () { openDiscountsDialog(discount); }
+                      );
+                    }
+                );
+              } else {
+                return Container();
               }
+            },
           ),
         ),
         Padding(
@@ -71,18 +90,32 @@ class RewardsCarousel extends StatelessWidget {
         const SizedBox(height: 20),
         SizedBox(
           height: 300,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: tickets.length,
-              itemBuilder: (BuildContext context, int index) {
-                Ticket ticket = tickets[index];
-                return CarouselItem(
-                    label: ticket.type,
-                    tokens: ticket.tokens.toString(),
-                    positive: false,
-                    onTap: () { openTicketsDialog(ticket); }
-                    );
+          child: FutureBuilder(
+            initialData: const [],
+            future: getAllTickets(),
+            builder: (context, AsyncSnapshot projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.none &&
+                  projectSnap.hasData == false) {
+                return Container();
+              } else if (projectSnap.hasData) {
+                var discounts = projectSnap.data!;
+                return  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: projectSnap.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Ticket ticket = projectSnap.data[index];
+                      return CarouselItem(
+                          label: ticket.getLabel(),
+                          tokens: ticket.token_cost.toString(),
+                          positive: false,
+                          onTap: () { openTicketsDialog(ticket); }
+                      );
+                    }
+                );
+              } else {
+                return Container();
               }
+            },
           ),
         ),
       ],

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:plant_b/models/discount.model.dart';
 import 'package:plant_b/pages/rewards/rewards_carousel.dart';
 import 'package:plant_b/core/styles.dart';
 
-class Rewards extends StatefulWidget {
+class Rewards extends StatelessWidget {
   const Rewards({Key? key}) : super(key: key);
 
-  @override
-  _RewardsState createState() => _RewardsState();
-}
-
-class _RewardsState extends State<Rewards> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

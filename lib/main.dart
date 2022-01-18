@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_b/models/discount.model.dart';
 import 'package:plant_b/pages/activities/map.dart';
 import 'package:plant_b/pages/rewards/rewards.dart';
 import 'package:plant_b/pages/scanner/scanner.dart';

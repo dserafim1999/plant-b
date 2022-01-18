@@ -53,7 +53,7 @@ class ProfileCarousel extends StatelessWidget {
             ],),
         ),
         const SizedBox(height: 20),
-        SizedBox(
+        /*SizedBox(
           height: 300,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -61,13 +61,13 @@ class ProfileCarousel extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 Discount discount = discounts[index];
                 return CarouselItem(
-                    label: discount.name,
-                    tokens: discount.tokens.toString(),
+                    label: discount.getLabel(),
+                    tokens: discount.token_cost .toString(),
                     positive: false,
                 );
               }
           ),
-        ),
+        ),*/
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
@@ -80,7 +80,7 @@ class ProfileCarousel extends StatelessWidget {
             ],),
         ),
         const SizedBox(height: 20),
-        SizedBox(
+        /*SizedBox(
           height: 300,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -94,7 +94,7 @@ class ProfileCarousel extends StatelessWidget {
                 );
               }
           ),
-        ),
+        ),*/
       ],
     );
   }

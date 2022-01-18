@@ -104,7 +104,7 @@ class DiscountPopup extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(discount.name, style: headline2),
+                              Text(discount.getLabel(), style: headline2),
                               SizedBox(height: 20,),
                               Text(discount.description, style: headline4),
                             ],
@@ -115,7 +115,7 @@ class DiscountPopup extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Tokens Required: "+ discount.tokens.toString(), style: headline2),
+                            Text("Tokens Required: "+ discount.token_cost.toString(), style: headline2),
                             SizedBox(height: 20,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

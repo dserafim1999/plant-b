@@ -83,7 +83,7 @@ class TicketPopup extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(ticket.type, style: headline),
+            Text(ticket.getLabel(), style: headline),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -128,7 +128,7 @@ class TicketPopup extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("Tokens Required: "+ ticket.tokens.toString(), style: headline2),
+                                Text("Tokens Required: "+ ticket.token_cost.toString(), style: headline2),
                                 const SizedBox(height: 20,),
                               ],
                             ),
