@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:plant_b/models/activity.model.dart';
+import 'package:plant_b/models/discount.model.dart';
 import 'package:plant_b/popups/discount_popup.dart';
 import 'package:plant_b/models/models.dart';
 
@@ -7,12 +9,16 @@ import 'package:plant_b/models/models.dart';
 class CarouselItem extends StatelessWidget {
   final Function()? onTap;
   final String label;
+  final String tokens;
+  final bool positive;
   //final String imagePath
 
   const CarouselItem({
     Key? key,
     required this.label,
     this.onTap,
+    required this.tokens,
+    required this.positive
     // this.imagePath,
   }) : super(key: key);
 
@@ -70,9 +76,28 @@ class CarouselItem extends StatelessWidget {
                       width: 170.0,
                       image: AssetImage("assets/placeholder.jpg"),
                       ),
-                    )
+                    ),
+                    Positioned(
+                        bottom: 130,
+                        left: 90,
+                        child: Container(
+                            width: 70,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text(positive ? tokens : "-" + tokens),
+                              CircleAvatar(radius: 10)
+                            ],
+                          )
+                        )
+                    ),
                   ],
-                )
+                ),
               ),
             ]),
         ),

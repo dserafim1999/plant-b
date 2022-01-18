@@ -5,11 +5,11 @@ import 'package:plant_b/popups/code_popup.dart';
 
 
 class DiscountPopup extends StatelessWidget {
-  final Discount? discount;
+  final Discount discount;
 
   const DiscountPopup({
     Key? key,
-    this.discount
+    required this.discount
   }) : super(key: key);
 
 
@@ -78,13 +78,11 @@ class DiscountPopup extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       contentPadding: const EdgeInsets.all(20.0),
       content: SizedBox(
-        height: 650,
+        height: 600,
         width: 350,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text("Redeem Discount", style: headline),
-            const SizedBox(height: 20),
             Container(width: 300, height: 175, decoration: BoxDecoration(
                 color: const Color(0xfff5f5f5),
                 borderRadius: BorderRadius.circular(20.0)
@@ -106,9 +104,9 @@ class DiscountPopup extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Discount Name", style: headline2),
+                              Text(discount.name, style: headline2),
                               SizedBox(height: 20,),
-                              Text("eqdiygwihfoiejf ohoufihwiuegf iygiefweig fywgeuf gywg eiuiufgieuwg fiugweiuf iuwg efiugwiegf iugweiuf gwiuef iuwgeifugwiugf iwueg fiuwegiuwgiugfw eiug fiuw feuiwwiufeuiwfiuwgfewuigwfe", style: headline4),
+                              Text(discount.description, style: headline4),
                             ],
                           )
                       ),
@@ -117,7 +115,7 @@ class DiscountPopup extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Tokens Required: 1000 ( )", style: headline2),
+                            Text("Tokens Required: "+ discount.tokens.toString(), style: headline2),
                             SizedBox(height: 20,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

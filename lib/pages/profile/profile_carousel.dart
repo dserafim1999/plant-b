@@ -33,7 +33,11 @@ class ProfileCarousel extends StatelessWidget {
               itemCount: activities.length,
               itemBuilder: (BuildContext context, int index) {
                 Activity activity = activities[index];
-                return CarouselItem(label: activity.name);
+                return CarouselItem(
+                    label: activity.name,
+                    tokens: activity.tokens.toString(),
+                    positive: true,
+                );
               }
           ),
         ),
@@ -56,7 +60,11 @@ class ProfileCarousel extends StatelessWidget {
               itemCount: discounts.length,
               itemBuilder: (BuildContext context, int index) {
                 Discount discount = discounts[index];
-                return CarouselItem(label: discount.name);
+                return CarouselItem(
+                    label: discount.name,
+                    tokens: discount.tokens.toString(),
+                    positive: false,
+                );
               }
           ),
         ),
@@ -79,7 +87,11 @@ class ProfileCarousel extends StatelessWidget {
               itemCount: tickets.length,
               itemBuilder: (BuildContext context, int index) {
                 Ticket ticket = tickets[index];
-                return CarouselItem(label: ticket.type);
+                return CarouselItem(
+                    label: ticket.type,
+                    tokens: ticket.tokens.toString(),
+                    positive: false,
+                );
               }
           ),
         ),
