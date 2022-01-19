@@ -14,7 +14,7 @@ class FriendsCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      child: ListView.builder(
+      /*child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: activities.length,
           itemBuilder: (BuildContext context, int index) {
@@ -23,7 +23,7 @@ class FriendsCarousel extends StatelessWidget {
                 label: activity.name
             );
           }
-      ),
+      ),*/
     );
   }
 }

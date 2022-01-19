@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:plant_b/pages/activities/activities_carousel.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Activities extends StatelessWidget {
@@ -31,9 +32,9 @@ class Activities extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const <Widget>[
-        Text("Testing", style: headline2),
+        Text("Testing", style: headline1),
         SizedBox(height: 12),
-        Text("blah vblah blahhh abkubd dubsundisn dhndieni")
+        ActivitiesCarousel()
       ],
     ),
   );

@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:plant_b/core/url.dart';
+import 'package:plant_b/models/activity.model.dart';
+import 'package:plant_b/models/discount.model.dart';
+import 'package:plant_b/models/ticket.model.dart';
 
 Future getAllUsers() async {
   final response = await http.get(Uri.parse(url+'/users'));
@@ -16,6 +19,21 @@ Future getAllUsers() async {
     // then throw an exception.
     throw Exception('Failed to load tickets');
   }
+}
+
+Future getAllUserActivities() {
+  // For now
+  return getAllActivities();
+}
+
+Future getAllUserDiscounts() {
+  // For now
+  return getAllDiscounts();
+}
+
+Future getAllUserTickets() {
+  // For now
+  return getAllTickets();
 }
 
 Future getUser(int cc) {
