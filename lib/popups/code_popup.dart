@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 
 class CodePopup extends StatelessWidget {
@@ -10,9 +11,9 @@ class CodePopup extends StatelessWidget {
 
   const CodePopup({
     Key? key,
-    this.label = '',
-    this.qrCodeValue = '',
-    this.description = ''
+    required this.label,
+    required this.qrCodeValue,
+    required this.description
   }) : super(key: key);
 
 
@@ -22,7 +23,7 @@ class CodePopup extends StatelessWidget {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       contentPadding: const EdgeInsets.all(20.0),
-      content: Container(
+      content: SizedBox(
         height: 650,
         width: 350,
         child: Column(
@@ -30,15 +31,15 @@ class CodePopup extends StatelessWidget {
           children: <Widget>[
             Text(label, style: headline),
             const SizedBox(height: 20),
-            //generate qrcode
-            Container(width: 250, height: 250, decoration: BoxDecoration(
-                color: const Color(0xfff5f5f5),
-                borderRadius: BorderRadius.circular(20.0)
-            )),
+            QrImage(
+                data: qrCodeValue,
+                size: 275,
+                backgroundColor: Colors.white,
+            ),
             const SizedBox(height: 20),
             Container(
                 width: 300,
-                height: 325,
+                height: 300,
                 decoration: BoxDecoration(
                   color: const Color(0xffe5e5e5),
                   borderRadius: BorderRadius.circular(20.0)
@@ -54,7 +55,7 @@ class CodePopup extends StatelessWidget {
                             children: [
                               Text("How It Works", style: headline2),
                               SizedBox(height: 20,),
-                              Text("eqdiygwihfoiejf ohoufihwiuegf iygiefweig fywgeuf gywg eiuiufgieuwg fiugweiuf iuwg efiugwiegf iugweiuf gwiuef iuwgeifugwiugf iwueg fiuwegiuwgiugfw eiug fiuw feuiwwiufeuiwfiuwgfewuigwfe", style: headline4),
+                              Text(description, style: headline4),
                             ],
                           )
                       ),
@@ -82,10 +83,11 @@ class CodePopup extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  style:  ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(const Color(0xff63982e)),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))
+                                  style: ElevatedButton.styleFrom(
+                                      primary: const Color(0xff63982e),
+                                      onPrimary: Colors.white,
+                                      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                                      textStyle: const TextStyle(fontSize: 20)
                                   ),
                                   child: Text('Close'),
                                 ),

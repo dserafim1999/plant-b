@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/popups/code_popup.dart';
 import 'package:plant_b/models/ticket.model.dart';
 
@@ -18,7 +19,7 @@ class TicketPopup extends StatelessWidget {
     Future openCodeDialog() => showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const CodePopup(label:"Ticket Code", qrCodeValue: "value", description: "description",);
+          return CodePopup(label:"Ticket Code", qrCodeValue: ticket.qr_code, description: "Present this code to redeem your ticket at the designated ticket sale locations. This code is personal and  can only be used once. You can access it again in the Profile Menu.",);
         }
     );
 
@@ -44,10 +45,11 @@ class TicketPopup extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style:  ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(const Color(0xff63982e)),
-                            padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
-                            textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))
+                        style: ElevatedButton.styleFrom(
+                            primary: const Color(0xff63982e),
+                            onPrimary: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                            textStyle: const TextStyle(fontSize: 20)
                         ),
                         child: const Text('No'),
                       ),
@@ -57,10 +59,11 @@ class TicketPopup extends StatelessWidget {
                           Navigator.pop(context);
                           openCodeDialog();
                         },
-                        style:  ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(const Color(0xff63982e)),
-                            padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
-                            textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))
+                        style: ElevatedButton.styleFrom(
+                            primary: const Color(0xff63982e),
+                            onPrimary: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                            textStyle: const TextStyle(fontSize: 20)
                         ),
                         child: const Text('Yes'),
                       ),
@@ -101,9 +104,9 @@ class TicketPopup extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const <Widget>[
-                          Text("John Smith", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text("ID: 123456789")
+                        children: <Widget>[
+                          Text(loggedUser.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text("ID: " + loggedUser.cc.toString())
                         ],
                       )
                     ],
@@ -157,10 +160,11 @@ class TicketPopup extends StatelessWidget {
                       onPressed: () {
                         openConfirmationDialog();
                       },
-                      style:  ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(const Color(0xff63982e)),
-                          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
-                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))
+                      style: ElevatedButton.styleFrom(
+                          primary: const Color(0xff63982e),
+                          onPrimary: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                          textStyle: const TextStyle(fontSize: 20)
                       ),
                       child: const Text('Confirm'),
                     ),
