@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:plant_b/pages/activities/activities.dart';
+import 'package:plant_b/pages/scanner/scanner.dart';
 import 'package:plant_b/popups/code_popup.dart';
 import 'dart:async';
 
@@ -72,5 +73,10 @@ class _ActivitiesMapState extends State<ActivitiesMap> {
 Widget buildFAB(BuildContext context) => FloatingActionButton(
         child: const Icon(Icons.center_focus_strong, color: Colors.white),
         backgroundColor: const Color(0xff63982E),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Scanner()),
+          );
+        },
       );
