@@ -4,6 +4,7 @@ import 'package:plant_b/models/ticket.model.dart';
 import 'package:plant_b/models/discount.model.dart';
 import 'package:plant_b/core/styles.dart';
 import 'package:plant_b/core/carousel_item.dart';
+import 'package:plant_b/models/user.model.dart';
 
 
 class ProfileCarousel extends StatelessWidget {
@@ -20,81 +21,123 @@ class ProfileCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const <Widget>[
               Text(
-                  "Activity History",
+                  "My Activities",
                   style: headline1
               ),
             ],),
         ),
         const SizedBox(height: 20),
-        /*SizedBox(
+        SizedBox(
           height: 300,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: activities.length,
-              itemBuilder: (BuildContext context, int index) {
-                Activity activity = activities[index];
-                return CarouselItem(
-                    label: activity.name,
-                    tokens: activity.tokens.toString(),
-                    positive: true,
+          child: FutureBuilder(
+            initialData: const [],
+            future: getAllUserActivities(),
+            builder: (context, AsyncSnapshot projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.none &&
+                  projectSnap.hasData == false) {
+                return Container();
+              } else if (projectSnap.hasData) {
+                return  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: projectSnap.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Activity activity = projectSnap.data[index];
+                      return CarouselItem(
+                          label: activity.getLabel(),
+                          tokens: activity.token_reward.toString(),
+                          positive: false,
+                          onTap: () { }
+                      );
+                    }
                 );
+              } else {
+                return Container();
               }
+            },
           ),
-        ),*/
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const <Widget>[
               Text(
-                  "Discounts History",
+                  "My Discounts",
                   style: headline1
               ),
             ],),
         ),
         const SizedBox(height: 20),
-        /*SizedBox(
+        SizedBox(
           height: 300,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: discounts.length,
-              itemBuilder: (BuildContext context, int index) {
-                Discount discount = discounts[index];
-                return CarouselItem(
-                    label: discount.getLabel(),
-                    tokens: discount.token_cost .toString(),
-                    positive: false,
+          child: FutureBuilder(
+            initialData: const [],
+            future: getAllUserDiscounts(),
+            builder: (context, AsyncSnapshot projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.none &&
+                  projectSnap.hasData == false) {
+                return Container();
+              } else if (projectSnap.hasData) {
+                return  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: projectSnap.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Discount discount = projectSnap.data[index];
+                      return CarouselItem(
+                          label: discount.getLabel(),
+                          tokens: discount.token_cost.toString(),
+                          positive: false,
+                          onTap: () { }
+                      );
+                    }
                 );
+              } else {
+                return Container();
               }
+            },
           ),
-        ),*/
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const <Widget>[
               Text(
-                  "Ticket History",
+                  "My Tickets",
                   style: headline1
               ),
             ],),
         ),
         const SizedBox(height: 20),
-        /*SizedBox(
+        SizedBox(
           height: 300,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: tickets.length,
-              itemBuilder: (BuildContext context, int index) {
-                Ticket ticket = tickets[index];
-                return CarouselItem(
-                    label: ticket.type,
-                    tokens: ticket.tokens.toString(),
-                    positive: false,
+          child: FutureBuilder(
+            initialData: const [],
+            future: getAllTickets(),
+            builder: (context, AsyncSnapshot projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.none &&
+                  projectSnap.hasData == false) {
+                return Container();
+              } else if (projectSnap.hasData) {
+                return  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: projectSnap.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Ticket ticket = projectSnap.data[index];
+                      return CarouselItem(
+                          label: ticket.getLabel(),
+                          tokens: ticket.token_cost.toString(),
+                          positive: false,
+                          onTap: () { }
+                      );
+                    }
                 );
+              } else {
+                return Container();
               }
+            },
           ),
-        ),*/
+        ),
       ],
     );
   }

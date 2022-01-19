@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/models/activity.model.dart';
-import 'package:plant_b/core/styles.dart';
 import 'package:plant_b/core/carousel_item.dart';
 
 
@@ -32,7 +31,7 @@ class _ActivitiesCarouselState extends State<ActivitiesCarousel> {
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {
-                return Container(height: 50, color: Colors.blue,);
+                return Container();
               } else if (projectSnap.hasData){
                 return  ListView.builder(
                     scrollDirection: Axis.horizontal,
