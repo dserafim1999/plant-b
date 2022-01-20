@@ -27,21 +27,36 @@ class Activities extends StatelessWidget {
     );
   }
 
-  Widget buildActivitiesMenu() => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 24),
+  Widget buildActivitiesMenu() => SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const <Widget>[
-        Text("Testing", style: headline1),
-        SizedBox(height: 12),
-        ActivitiesCarousel()
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Text("Activities Around You", style: headline1)
+        ),
+        SizedBox(height: 10),
+        ActivitiesCarousel(),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Text("Recommended For You", style: headline1)
+        ),
+        SizedBox(height: 10),
+        ActivitiesCarousel(),
+        Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text("Popular With Friends", style: headline1)
+        ),
+        SizedBox(height: 10),
+        ActivitiesCarousel(),
+        SizedBox(height: 25),
       ],
     ),
   );
 
   Widget buildDragHandle() => Center(
     child: IconButton(
-      icon: Icon(Icons.expand_less),
+      icon: const Icon(Icons.expand_less),
       onPressed: togglePanel,
       color: Colors.white,
       iconSize: 35,

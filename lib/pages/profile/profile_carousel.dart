@@ -31,7 +31,7 @@ class ProfileCarousel extends StatelessWidget {
           height: 300,
           child: FutureBuilder(
             initialData: const [],
-            future: getAllUserActivities(),
+            future: getAllActivities(),
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {
@@ -45,7 +45,7 @@ class ProfileCarousel extends StatelessWidget {
                       return CarouselItem(
                           label: activity.getLabel(),
                           tokens: activity.token_reward.toString(),
-                          positive: false,
+                          positive: true,
                           img_url: activity.img_url,
                           onTap: () { }
                       );

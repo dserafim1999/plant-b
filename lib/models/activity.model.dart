@@ -1,15 +1,19 @@
-import 'package:http/http.dart' as http;
-import 'package:plant_b/core/url.dart';
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
+import 'package:plant_b/core/url.dart';
+
 Future getAllActivities() async {
-  final response = await http.get(Uri.parse(url + '/activities'));
+  final response = await http.get(Uri.parse(url+'/activities'));
+
+
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
     Iterable l = json.decode(response.body);
-    print(response.body);
-    return List<Activity>.from(l.map((model)=> Activity.fromJson(model)));
+    List<Activity> activities = List<Activity>.from(l.map((model)=> Activity.fromJson(model)));
+    activities.shuffle();
+    return activities;
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -18,7 +22,7 @@ Future getAllActivities() async {
 }
 
 Future getActivity(String code) {
-  return http.get(Uri.parse(url+'/activities/$code'));
+  return http.get(Uri.parse(url+'/activity/$code'));
 }
 
 class Activity {
@@ -27,7 +31,7 @@ class Activity {
   String name;
   double location_x;
   double location_y;
-  int maxNumParticipants;
+  int max_number_participants;
   String date;
   String status;
   int hours_to_repeat;
@@ -40,7 +44,7 @@ class Activity {
     required this.name,
     required this.location_x,
     required this.location_y,
-    required this.maxNumParticipants,
+    required this.max_number_participants,
     required this.date,
     required this.status,
     required this.hours_to_repeat,
@@ -59,7 +63,7 @@ class Activity {
         name: json['name'],
         location_x: json['location_x'],
         location_y: json['location_y'],
-        maxNumParticipants: json['maxNumParticipants'],
+        max_number_participants: json['max_number_participants'],
         date: json['date'],
         status: json['status'],
         hours_to_repeat: json['hours_to_repeat'],
