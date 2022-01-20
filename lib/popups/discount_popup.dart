@@ -85,10 +85,14 @@ class DiscountPopup extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(width: 300, height: 175, decoration: BoxDecoration(
-                color: const Color(0xfff5f5f5),
-                borderRadius: BorderRadius.circular(20.0)
-            )),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Container(
+                height: 175.0,
+                width: 300.0,
+                child: Image.network(discount.img_url, fit: BoxFit.fitHeight),
+              ),
+            ),
             const SizedBox(height: 20),
             Container(
                 width: 300,

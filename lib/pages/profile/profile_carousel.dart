@@ -46,6 +46,7 @@ class ProfileCarousel extends StatelessWidget {
                           label: activity.getLabel(),
                           tokens: activity.token_reward.toString(),
                           positive: false,
+                          img_url: activity.img_url,
                           onTap: () { }
                       );
                     }
@@ -87,6 +88,7 @@ class ProfileCarousel extends StatelessWidget {
                           label: discount.getLabel(),
                           tokens: discount.token_cost.toString(),
                           positive: false,
+                          img_url: discount.img_url,
                           onTap: () { }
                       );
                     }
@@ -128,6 +130,7 @@ class ProfileCarousel extends StatelessWidget {
                           label: ticket.getLabel(),
                           tokens: ticket.token_cost.toString(),
                           positive: false,
+                          img_url: ticket.img_url,
                           onTap: () { }
                       );
                     }

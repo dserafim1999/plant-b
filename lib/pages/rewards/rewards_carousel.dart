@@ -65,6 +65,7 @@ class _RewardsCarouselState extends State<RewardsCarousel> {
                           label: discount.getLabel(),
                           tokens: discount.token_cost.toString(),
                           positive: false,
+                          img_url: discount.img_url,
                           onTap: () { openDiscountsDialog(discount); }
                       );
                     }
@@ -106,6 +107,7 @@ class _RewardsCarouselState extends State<RewardsCarousel> {
                           label: ticket.getLabel(),
                           tokens: ticket.token_cost.toString(),
                           positive: false,
+                          img_url: ticket.img_url,
                           onTap: () { openTicketsDialog(ticket); }
                       );
                     }

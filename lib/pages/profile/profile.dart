@@ -21,9 +21,13 @@ class _ProfileState extends State<Profile> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                const CircleAvatar(
-                  backgroundImage: AssetImage("assets/user.png"),
-                  radius: 65,
+                CircleAvatar(
+                  radius: 70,
+                  backgroundColor: Colors.white,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(loggedUser.img_url),
+                    radius: 65,
+                  ),
                 ),
                 const SizedBox(width: 15),
                 Column(

@@ -100,7 +100,10 @@ class TicketPopup extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      const CircleAvatar(radius: 45),
+                      CircleAvatar(
+                          radius: 45,
+                          backgroundImage: NetworkImage(loggedUser.img_url),
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -22,7 +22,6 @@ Future getActivity(String code) {
 }
 
 class Activity {
-  //String imageUrl;
   String qr_code;
   int token_reward;
   String name;
@@ -33,9 +32,9 @@ class Activity {
   String status;
   int hours_to_repeat;
   String description;
+  String img_url;
 
   Activity({
-    //required this.imageUrl,
     required this.qr_code,
     required this.token_reward,
     required this.name,
@@ -46,6 +45,7 @@ class Activity {
     required this.status,
     required this.hours_to_repeat,
     required this.description,
+    required this.img_url,
   });
 
   String getLabel() {
@@ -63,7 +63,8 @@ class Activity {
         date: json['date'],
         status: json['status'],
         hours_to_repeat: json['hours_to_repeat'],
-        description: json['description']
+        description: json['description'],
+        img_url: json['img_url']
     );
   }
 }

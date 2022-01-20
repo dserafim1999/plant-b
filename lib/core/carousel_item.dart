@@ -11,15 +11,15 @@ class CarouselItem extends StatelessWidget {
   final String label;
   final String tokens;
   final bool positive;
-  //final String imagePath
+  final String img_url;
 
   const CarouselItem({
     Key? key,
     required this.label,
     this.onTap,
     required this.tokens,
-    required this.positive
-    // this.imagePath,
+    required this.positive,
+    required this.img_url,
   }) : super(key: key);
 
 
@@ -70,12 +70,12 @@ class CarouselItem extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: const Image(
-                      height: 170.0,
-                      width: 170.0,
-                      image: AssetImage("assets/placeholder.jpg"),
-                      ),
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Container(
+                        height: 170.0,
+                        width: 170.0,
+                        child: Image.network(img_url, fit: BoxFit.fitHeight),
+                        ),
                     ),
                     Positioned(
                         bottom: 130,

@@ -24,26 +24,30 @@ Future getTicket(String code) {
 
 class Ticket {
   int token_cost;
+  String name;
   int amount;
   String qr_code;
-  //String imageUrl;
+  String img_url;
 
   Ticket({
     required this.token_cost,
+    required this.name,
     required this.amount,
     required this.qr_code,
-    //required this.imageUrl,
+    required this.img_url,
   });
 
   String getLabel() {
-    return qr_code;
+    return name;
   }
 
   factory Ticket.fromJson(Map<String, dynamic> json) {
     return Ticket(
         qr_code: json['qr_code'],
+        name: json['name'],
         amount: json['amount'],
         token_cost: json['token_cost'],
+        img_url: json['img_url']
     );
   }
 }

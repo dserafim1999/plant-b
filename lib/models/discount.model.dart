@@ -24,6 +24,7 @@ Future getDiscount(String code) {
 
 class Discount {
   String qr_code;
+  String name;
   String type;
   int amount;
   int token_cost;
@@ -31,10 +32,11 @@ class Discount {
   double location_x;
   double location_y;
   String description;
-  //String imageUrl;
+  String img_url;
 
   Discount({
     required this.qr_code,
+    required this.name,
     required this.type,
     required this.amount,
     required this.token_cost,
@@ -42,23 +44,25 @@ class Discount {
     required this.location_x,
     required this.location_y,
     required this.description,
-    //required this.imageUrl,
+    required this.img_url,
   });
 
   String getLabel() {
-    return amount.toString() + "% - " + shop;
+    return name + " - " + shop;
   }
 
   factory Discount.fromJson(Map<String, dynamic> json) {
     return Discount(
         qr_code: json['qr_code'],
+        name: json['name'],
         type: json['type'],
         amount: json['amount'],
         token_cost: json['token_cost'],
         shop: json['shop'],
         location_x: json['location_x'],
         location_y: json['location_y'],
-        description: json['description']
+        description: json['description'],
+        img_url: json['img_url']
     );
   }
 

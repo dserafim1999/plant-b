@@ -51,22 +51,25 @@ Future<void> fakeLogin() async {
   }
 }
 
-User loggedUser = User(cc: 1, name: 'name', token_amount: 0, email: 'email', password: 'password');
+User loggedUser = User(cc: 11111111, name: 'name', token_amount: 0, token_total: 0, email: 'email', password: 'password', img_url: 'img_url');
 
 class User {
   int cc;
   String name;
   int token_amount;
+  int token_total;
   String email;
   String password;
-  //String imageUrl;
+  String img_url;
 
   User({
     required this.cc,
     required this.name,
     required this.token_amount,
+    required this.token_total,
     required this.email,
     required this.password,
+    required this.img_url
   });
 
 
@@ -75,8 +78,10 @@ class User {
         cc: json['cc'],
         name: json['name'],
         token_amount: json['token_amount'],
+        token_total: json['token_total'],
         email: json['email'],
-        password: json['password']
+        password: json['password'],
+        img_url: json['img_url']
     );
   }
 }

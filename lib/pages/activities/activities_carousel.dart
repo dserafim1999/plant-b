@@ -42,6 +42,7 @@ class _ActivitiesCarouselState extends State<ActivitiesCarousel> {
                           label: activity.getLabel(),
                           tokens: activity.token_reward.toString(),
                           positive: true,
+                          img_url: activity.img_url,
                           onTap: () { /*openDiscountsDialog(discount);*/ }
                       );
                     }
