@@ -41,6 +41,59 @@ Future getUser(int cc) {
   return http.get(Uri.parse(url+'/users/$cc'));
 }
 
+Future getUserFriends() async {
+  final response = await http.get(Uri.parse(url+'/users/${loggedUser.cc}/friends'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    return List<User>.from(l.map((model)=> User.fromJson(model)));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load user friends');
+  }
+}
+
+
+Future getLeaderboard(bool isGlobal) async {
+  final response = isGlobal ?
+    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/leaderboard')) :
+    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/friendleaderboard'));
+
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    return List<User>.from(l.map((model)=> User.fromJson(model)));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load leaderboard');
+  }
+}
+
+Future getLeaderboardPosition(bool isGlobal, int position) async {
+  final response = isGlobal ?
+    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/leaderboard')) :
+    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/friendleaderboard'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    List<User> leaderboard = List<User>.from(l.map((model)=> User.fromJson(model)));
+
+    return leaderboard.length >= position ? leaderboard[position - 1].img_url : 'https://www.ihep.org/wp-content/themes/ihep-theme/assets/images/user-profile.jpg';
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load leaderboard position');
+  }
+}
+
 Future<void> fakeLogin() async {
   final response = await getUser(11111111);
 

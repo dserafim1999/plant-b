@@ -61,7 +61,7 @@ class _ScannerState extends State<Scanner> {
         borderWidth: 20,
         borderRadius: 5,
         borderColor: Colors.white,
-        overlayColor: const Color(0xff86C24B),
+        overlayColor: const Color(0xff86C24B).withOpacity(0.9),
         cutOutSize:  MediaQuery.of(context).size.width * 0.8
       ),
   );

@@ -8,12 +8,12 @@ import 'package:plant_b/models/models.dart';
 
 class Friend extends StatelessWidget {
   final String label;
-  //final String imagePath
+  final String img_url;
 
   const Friend({
     Key? key,
     required this.label,
-    // this.imagePath,
+    required this.img_url,
   }) : super(key: key);
 
   void onTap() {}
@@ -22,14 +22,19 @@ class Friend extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 150,
-      height: 100,
       child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CircleAvatar(
+                radius: 52,
+                backgroundColor: Colors.white,
+                child: CircleAvatar(
                   radius: 50,
+                  backgroundImage: NetworkImage(img_url),
+                ),
               ),
-              Text(label)
+              SizedBox(height: 15),
+              Text(label, style: TextStyle(fontSize: 15, color: Colors.white))
             ],
       ),
     );
