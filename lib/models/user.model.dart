@@ -17,28 +17,23 @@ Future getAllUsers() async {
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
-    throw Exception('Failed to load tickets');
+    throw Exception('Failed to load users');
   }
 }
 
-Future getAllUserActivities() {
-  // For now
-  return getAllActivities();
-}
+Future getUser(int cc) async {
+  final response = await http.get(Uri.parse(url+'/users/$cc'));
 
-Future getAllUserDiscounts() {
-  // For now
-  return getAllDiscounts();
-}
 
-Future getAllUserTickets() {
-  // For now
-  return getAllTickets();
-}
-
-Future getUser(int cc) {
-  print(url+'/users/$cc');
-  return http.get(Uri.parse(url+'/users/$cc'));
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return User.fromJson(json.decode(response.body)[0]);
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load activities');
+  }
 }
 
 Future getUserFriends() async {
@@ -54,6 +49,19 @@ Future getUserFriends() async {
     // then throw an exception.
     throw Exception('Failed to load user friends');
   }
+}
+
+Future addUserFriend(int cc1, int cc2) {
+  return http.post(
+    Uri.parse(url+'/users/$cc1/friends'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode({
+      'user1_cc': cc1,
+      'user2_cc': cc2
+    }),
+  );
 }
 
 

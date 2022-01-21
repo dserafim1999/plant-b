@@ -91,7 +91,7 @@ class CarouselItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Text(positive ? tokens : "-" + tokens),
-                              CircleAvatar(radius: 10)
+                              CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"),)
                             ],
                           )
                         )

@@ -43,7 +43,7 @@ class Rewards extends StatelessWidget {
                                 ),
                               ),
                               CircleAvatar(
-                                backgroundColor: Colors.green,
+                                backgroundImage: AssetImage("assets/token.png"),
                                 radius: 20,
                               )
                             ],

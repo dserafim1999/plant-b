@@ -31,7 +31,7 @@ class ProfileCarousel extends StatelessWidget {
           height: 300,
           child: FutureBuilder(
             initialData: const [],
-            future: getAllActivities(),
+            future: getAllUserActivities(loggedUser.cc),
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {
@@ -73,7 +73,7 @@ class ProfileCarousel extends StatelessWidget {
           height: 300,
           child: FutureBuilder(
             initialData: const [],
-            future: getAllUserDiscounts(),
+            future: getAllUserDiscounts(loggedUser.cc),
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {
@@ -115,7 +115,7 @@ class ProfileCarousel extends StatelessWidget {
           height: 300,
           child: FutureBuilder(
             initialData: const [],
-            future: getAllTickets(),
+            future: getAllUserTickets(loggedUser.cc),
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {

@@ -1,79 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:plant_b/models/activity.model.dart';
 import 'package:plant_b/models/discount.model.dart';
+import 'package:plant_b/pages/scanner/scanner.dart';
 import 'package:plant_b/popups/code_popup.dart';
 
 
-class DiscountPopup extends StatelessWidget {
-  final Discount discount;
+class ActivityPopup extends StatelessWidget {
+  final Activity activity;
 
-  const DiscountPopup({
+  const ActivityPopup({
     Key? key,
-    required this.discount
+    required this.activity
   }) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    Future openCodeDialog() => showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return CodePopup(label:"Discount Code", qrCodeValue: discount.qr_code, description: "Present this code to the corresponding vendor in order to redeem your discount. This code is personal and valid only once. You can access it again in the Profile Menu.",);
-        }
-    );
 
-    Future openConfirmationDialog() => showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            contentPadding: const EdgeInsets.all(20.0),
-            content: Container(
-              height: 200,
-              width: 350,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  const Text("Are you sure you want to redeem this discount?", style: headline, textAlign: TextAlign.center),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color(0xff63982e),
-                          onPrimary: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                          textStyle: const TextStyle(fontSize: 20)
-                        ),
-                        child: const Text('No'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                          openCodeDialog();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            primary: const Color(0xff63982e),
-                            onPrimary: Colors.white,
-                            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                            textStyle: const TextStyle(fontSize: 20)
-                        ),
-                        child: const Text('Yes'),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          );
-        }
-    );
+    Future openScanner() => Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => const Scanner()),
+               );
 
     return AlertDialog(
       shape: const RoundedRectangleBorder(
@@ -86,11 +34,12 @@ class DiscountPopup extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
               child: Container(
                 height: 175.0,
                 width: 300.0,
-                child: Image.network(discount.img_url, fit: BoxFit.fitHeight),
+                child: ClipRRect(
+                  child: Image.network(activity.img_url, fit: BoxFit.fitHeight),
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -110,9 +59,9 @@ class DiscountPopup extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(discount.getLabel(), style: headline2),
+                              Text(activity.getLabel(), style: headline2),
                               const SizedBox(height: 20,),
-                              Text(discount.description, style: headline4),
+                              Text(activity.description, style: headline4),
                             ],
                           )
                       ),
@@ -124,10 +73,10 @@ class DiscountPopup extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("Tokens Required:", style: headline2),
+                                Text("Token Reward:", style: headline2),
                                 Row(
                                   children: [
-                                    Text(discount.token_cost.toString(), style: headline2),
+                                    Text(activity.token_reward.toString(), style: headline2),
                                     SizedBox(width: 5),
                                     CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"))
                                   ],
@@ -152,7 +101,7 @@ class DiscountPopup extends StatelessWidget {
                                 ),*/
                                 ElevatedButton(
                                   onPressed: () {
-                                    openConfirmationDialog();
+                                    openScanner();
                                   },
                                   style: ElevatedButton.styleFrom(
                                       primary: const Color(0xff63982e),
@@ -160,7 +109,7 @@ class DiscountPopup extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                                       textStyle: const TextStyle(fontSize: 20)
                                   ),
-                                  child: const Text('Confirm'),
+                                  child: const Text('Scan'),
                                 ),
                               ],
                             )

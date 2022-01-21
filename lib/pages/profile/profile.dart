@@ -22,7 +22,7 @@ class _ProfileState extends State<Profile> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 CircleAvatar(
-                  radius: 70,
+                  radius: 67,
                   backgroundColor: Colors.white,
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(loggedUser.img_url),
@@ -60,7 +60,7 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                             CircleAvatar(
-                              backgroundColor: Colors.green,
+                              backgroundImage: AssetImage("assets/token.png"),
                               radius: 20,
                             )
                           ],

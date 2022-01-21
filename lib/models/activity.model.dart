@@ -21,8 +21,47 @@ Future getAllActivities() async {
   }
 }
 
-Future getActivity(String code) {
-  return http.get(Uri.parse(url+'/activity/$code'));
+Future getActivity(String code) async{
+  final response = await http.get(Uri.parse(url+'/activities/$code'));
+
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Activity.fromJson(json.decode(response.body)[0]);
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load activities');
+  }
+}
+
+Future addUserActivity(int cc, String code) {
+  return http.post(
+    Uri.parse(url+'/users/$cc/activities'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode({
+      'user_cc': cc,
+      'activity_qr': code
+    }),
+  );
+}
+
+Future getAllUserActivities(int cc) async {
+  final response = await http.get(Uri.parse(url+'/users/$cc/activities'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    return List<Activity>.from(l.map((model)=> Activity.fromJson(model)));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load user activities');
+  }
 }
 
 class Activity {

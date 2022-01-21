@@ -18,6 +18,21 @@ Future getAllDiscounts() async {
   }
 }
 
+Future getAllUserDiscounts(int cc) async {
+  final response = await http.get(Uri.parse(url + '/users/$cc/discounts'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    return List<Discount>.from(l.map((model)=> Discount.fromJson(model)));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load user discounts');
+  }
+}
+
 Future getDiscount(String code) {
   return http.get(Uri.parse(url+'/discounts/$code'));
 }

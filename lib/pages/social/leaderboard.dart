@@ -158,7 +158,13 @@ class _LeaderboardState extends State<Leaderboard> {
                         Text(user.name, style: headline2),
                       ],
                     ),
-                    Text(user.token_total.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+                    Row(
+                      children: [
+                        Text(user.token_total.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        SizedBox(width: 5),
+                        CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"),)
+                      ],
+                    )
                   ]
                 ),
               );

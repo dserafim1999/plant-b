@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/models/activity.model.dart';
 import 'package:plant_b/core/carousel_item.dart';
+import 'package:plant_b/popups/activity_popup.dart';
 
 
 class ActivitiesCarousel extends StatefulWidget {
@@ -13,12 +14,12 @@ class ActivitiesCarousel extends StatefulWidget {
 class _ActivitiesCarouselState extends State<ActivitiesCarousel> {
   @override
   Widget build(BuildContext context) {
-    /*Future openDiscountsDialog(Discount discount) => showDialog(
+    Future openActivitiesDialog(Activity activity) => showDialog(
         context: context,
         builder: (BuildContext context) {
-            return DiscountPopup(discount: discount);
+            return ActivityPopup(activity: activity);
         }
-    );*/
+    );
 
     return Column(
       children: <Widget>[
@@ -43,7 +44,7 @@ class _ActivitiesCarouselState extends State<ActivitiesCarousel> {
                           tokens: activity.token_reward.toString(),
                           positive: true,
                           img_url: activity.img_url,
-                          onTap: () { /*openDiscountsDialog(discount);*/ }
+                          onTap: () { openActivitiesDialog(activity); }
                       );
                     }
                 );
