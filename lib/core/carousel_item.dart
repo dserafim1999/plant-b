@@ -74,7 +74,12 @@ class CarouselItem extends StatelessWidget {
                       child: Container(
                         height: 170.0,
                         width: 170.0,
-                        child: Image.network(img_url, fit: BoxFit.fitHeight),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(img_url),
+                          ),
+                        ),
                         ),
                     ),
                     Positioned(

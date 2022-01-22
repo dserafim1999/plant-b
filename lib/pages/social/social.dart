@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plant_b/core/styles.dart';
 import 'package:plant_b/pages/social/friends_carousel.dart';
 import 'package:plant_b/pages/social/leaderboard.dart';
+import 'package:plant_b/popups/friends_popup.dart';
 
 class Social extends StatefulWidget {
   const Social({Key? key}) : super(key: key);
@@ -11,6 +12,18 @@ class Social extends StatefulWidget {
 }
 
 class _SocialState extends State<Social> {
+
+  Future openFriendsDialog() => showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return FriendsPopup();
+      }
+  ).then((_) => { rebuildPage() });
+
+  rebuildPage() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -22,7 +35,13 @@ class _SocialState extends State<Social> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     const Text('Friends', style: headline1),
-                    const Text('Edit', style: TextStyle(color: Colors.white, fontSize: 18)),
+                    TextButton.icon(
+                      onPressed: () {
+                        openFriendsDialog();
+                      },
+                      icon: Icon(Icons.edit, size: 18, color: Colors.white,),
+                      label: Text('Edit', style: TextStyle(color: Colors.white, fontSize: 18)),
+                    ),
                   ],
                 ),
               ),

@@ -64,6 +64,11 @@ Future addUserFriend(int cc1, int cc2) {
   );
 }
 
+Future deleteUserFriend(int cc1, int cc2) {
+  return http.delete(Uri.parse(url+'/users/$cc1/friends/$cc2'));
+}
+
+
 
 Future getLeaderboard(bool isGlobal) async {
   final response = isGlobal ?
@@ -112,7 +117,7 @@ Future<void> fakeLogin() async {
   }
 }
 
-User loggedUser = User(cc: 11111111, name: 'name', token_amount: 0, token_total: 0, email: 'email', password: 'password', img_url: 'img_url');
+User loggedUser = User(cc: 11111111, name: 'name', token_amount: 0, token_total: 0, email: 'email', password: 'password', img_url: 'https://www.ihep.org/wp-content/themes/ihep-theme/assets/images/user-profile.jpg');
 
 class User {
   int cc;

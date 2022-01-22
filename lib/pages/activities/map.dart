@@ -71,7 +71,7 @@ class _ActivitiesMapState extends State<ActivitiesMap> {
 }
 
 Widget buildFAB(BuildContext context) => FloatingActionButton(
-        child: const Icon(Icons.center_focus_strong, color: Colors.white),
+        child: const Icon(Icons.qr_code_scanner, color: Colors.white),
         backgroundColor: const Color(0xff63982E),
         onPressed: () {
           Navigator.push(

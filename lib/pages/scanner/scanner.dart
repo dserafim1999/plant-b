@@ -137,7 +137,8 @@ class _ScannerState extends State<Scanner> {
   Widget buildActivityResult(BuildContext context, Activity activity) {
     return Scaffold(
       body: Container(
-          color: const Color(0xff86C24B),
+        width: MediaQuery.of(context).size.width,
+        color: const Color(0xff86C24B),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -183,6 +184,47 @@ class _ScannerState extends State<Scanner> {
   Widget buildFriendResult(BuildContext context, User friend) {
     return Scaffold(
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        color: const Color(0xff86C24B),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text("Friend Added!", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 105,
+                  backgroundColor: Colors.white,
+                  child: CircleAvatar(
+                    radius: 100,
+                    backgroundImage: NetworkImage(friend.img_url),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Text(friend.name, style: TextStyle(color: Colors.white, fontSize: 28)),
+              ],
+            ),
+            SizedBox(height: 20,),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xff63982e),
+                  onPrimary: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  textStyle: const TextStyle(fontSize: 20)
+              ),
+              child: const Text('Back'),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    /*return Scaffold(
+      body: Container(
         color: const Color(0xff86C24B),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -218,7 +260,7 @@ class _ScannerState extends State<Scanner> {
           ],
         ),
       ),
-    );
+    );*/
   }
 
   Widget buildInvalidResult() => Container(

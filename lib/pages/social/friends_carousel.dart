@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plant_b/models/activity.model.dart';
-import 'package:plant_b/models/ticket.model.dart';
-import 'package:plant_b/models/discount.model.dart';
-import 'package:plant_b/core/styles.dart';
-import 'package:plant_b/core/carousel_item.dart';
 import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/pages/social/friend.dart';
 
@@ -28,10 +23,7 @@ class FriendsCarousel extends StatelessWidget {
                 itemCount: projectSnap.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   User user = projectSnap.data[index];
-                  return Friend(
-                      label: user.name,
-                      img_url: user.img_url,
-                  );
+                  return Friend(friend: user);
                 }
             );
           }  else {
