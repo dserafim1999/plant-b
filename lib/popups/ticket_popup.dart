@@ -57,6 +57,7 @@ class TicketPopup extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.pop(context);
+                          addUserTicket(loggedUser.cc, ticket.qr_code);
                           openCodeDialog();
                         },
                         style: ElevatedButton.styleFrom(

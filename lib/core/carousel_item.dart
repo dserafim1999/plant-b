@@ -12,14 +12,16 @@ class CarouselItem extends StatelessWidget {
   final String tokens;
   final bool positive;
   final String img_url;
+  bool inactive = false;
 
-  const CarouselItem({
+  CarouselItem({
     Key? key,
     required this.label,
     this.onTap,
     required this.tokens,
     required this.positive,
     required this.img_url,
+    this.inactive = false
   }) : super(key: key);
 
 
@@ -74,9 +76,11 @@ class CarouselItem extends StatelessWidget {
                       child: Container(
                         height: 170.0,
                         width: 170.0,
+                        foregroundDecoration: inactive ?  BoxDecoration(color: Colors.grey, backgroundBlendMode: BlendMode.saturation) : BoxDecoration(),
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.fill,
+                            opacity: inactive ? 0.2 : 1,
                             image: NetworkImage(img_url),
                           ),
                         ),

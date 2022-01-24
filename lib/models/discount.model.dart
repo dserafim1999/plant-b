@@ -25,7 +25,15 @@ Future getAllUserDiscounts(int cc) async {
     // If the server did return a 200 OK response,
     // then parse the JSON.
     Iterable l = json.decode(response.body);
-    return List<Discount>.from(l.map((model)=> Discount.fromJson(model)));
+    List<Discount> discounts = List<Discount>.from(l.map((model)=> Discount.fromJson(model)));
+    discounts.sort((a, b) {
+      if(b.used) {
+          return -1;
+      }
+          return 1;
+      }
+    );
+    return discounts;
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -35,6 +43,20 @@ Future getAllUserDiscounts(int cc) async {
 
 Future getDiscount(String code) {
   return http.get(Uri.parse(url+'/discounts/$code'));
+}
+
+Future addUserDiscount(int cc, String discount) {
+  return http.post(
+    Uri.parse(url+'/users/$cc/discounts'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode({
+      "user_cc" : cc,
+      "discounts_qr" : discount,
+      "status": "unused"
+    }),
+  );
 }
 
 class Discount {
@@ -48,6 +70,7 @@ class Discount {
   double location_y;
   String description;
   String img_url;
+  bool used;
 
   Discount({
     required this.qr_code,
@@ -60,6 +83,7 @@ class Discount {
     required this.location_y,
     required this.description,
     required this.img_url,
+    this.used = false
   });
 
   String getLabel() {
@@ -77,7 +101,8 @@ class Discount {
         location_x: json['location_x'],
         location_y: json['location_y'],
         description: json['description'],
-        img_url: json['img_url']
+        img_url: json['img_url'],
+        used: json.containsKey("status") ? json["status"] == "used" : false
     );
   }
 

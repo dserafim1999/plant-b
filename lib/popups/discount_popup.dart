@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/styles.dart';
 import 'package:plant_b/models/discount.model.dart';
+import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/popups/code_popup.dart';
 
 
@@ -56,6 +57,7 @@ class DiscountPopup extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.pop(context);
+                          addUserDiscount(loggedUser.cc, discount.qr_code);
                           openCodeDialog();
                         },
                         style: ElevatedButton.styleFrom(

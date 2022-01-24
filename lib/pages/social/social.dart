@@ -30,7 +30,7 @@ class _SocialState extends State<Social> {
       child: Column(
           children: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 50, 30, 10),
+                padding: const EdgeInsets.fromLTRB(30, 20, 30, 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

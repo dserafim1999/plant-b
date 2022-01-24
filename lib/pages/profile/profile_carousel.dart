@@ -5,6 +5,7 @@ import 'package:plant_b/models/discount.model.dart';
 import 'package:plant_b/core/styles.dart';
 import 'package:plant_b/core/carousel_item.dart';
 import 'package:plant_b/models/user.model.dart';
+import 'package:plant_b/popups/code_popup.dart';
 
 
 class ProfileCarousel extends StatelessWidget {
@@ -12,6 +13,20 @@ class ProfileCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future openDiscountCodeDialog(Discount discount) => showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CodePopup(label:"Discount Code", qrCodeValue: discount.qr_code, description: "Present this code to the corresponding vendor in order to redeem your discount. This code is personal and valid only once. You can access it again in the Profile Menu.",);
+        }
+    );
+
+    Future openTicketCodeDialog(Ticket ticket) => showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CodePopup(label:"Ticket Code", qrCodeValue: ticket.qr_code, description: "Present this code to redeem your ticket at the designated ticket sale locations. This code is personal and  can only be used once. You can access it again in the Profile Menu.",);
+        }
+    );
+
     return Column(
       children: <Widget>[
         const SizedBox(height: 40),
@@ -89,7 +104,8 @@ class ProfileCarousel extends StatelessWidget {
                           tokens: discount.token_cost.toString(),
                           positive: false,
                           img_url: discount.img_url,
-                          onTap: () { }
+                          onTap: discount.used ? () {} : () { openDiscountCodeDialog(discount); },
+                          inactive: discount.used,
                       );
                     }
                 );
@@ -131,7 +147,8 @@ class ProfileCarousel extends StatelessWidget {
                           tokens: ticket.token_cost.toString(),
                           positive: false,
                           img_url: ticket.img_url,
-                          onTap: () { }
+                          onTap: ticket.used ? () {} : () { openTicketCodeDialog(ticket); },
+                          inactive: ticket.used,
                       );
                     }
                 );

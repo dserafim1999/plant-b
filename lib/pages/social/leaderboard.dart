@@ -136,39 +136,42 @@ class _LeaderboardState extends State<Leaderboard> {
           projectSnap.hasData == false) {
         return Container();
       } else if (projectSnap.hasData){
-        return  ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: projectSnap.data.length,
-            itemBuilder: (BuildContext context, int index) {
-              User user = projectSnap.data[index];
-              return Padding(
-                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: index > 2 ? const Color(0xff63982e).withOpacity(0) : const Color(0xff86C24B),
-                          radius: 20,
-                          child: Text((index + 1).toString(), style: index > 2 ? headline : headline1),
-                        ),
-                        const SizedBox(width: 20),
-                        Text(user.name, style: headline2),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(user.token_total.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        SizedBox(width: 5),
-                        CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"),)
-                      ],
-                    )
-                  ]
-                ),
-              );
-            }
+        return  Scrollbar(
+          isAlwaysShown: true,
+          child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: projectSnap.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                User user = projectSnap.data[index];
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(5, 5, 10, 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: index > 2 ? const Color(0xff63982e).withOpacity(0) : const Color(0xff86C24B),
+                            radius: 20,
+                            child: Text((index + 1).toString(), style: index > 2 ? headline : headline1),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(user.name, style: headline2),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(user.token_total.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          SizedBox(width: 5),
+                          CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"),)
+                        ],
+                      )
+                    ]
+                  ),
+                );
+              }
+          ),
         );
       }  else {
         return Container();
