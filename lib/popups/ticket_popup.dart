@@ -37,7 +37,7 @@ class TicketPopup extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  const Text("Are you sure you want to redeem these tickets?", style: headline, textAlign: TextAlign.center),
+                  const Text("Are you sure you want to redeem this ticket?", style: headline, textAlign: TextAlign.center),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -87,23 +87,83 @@ class TicketPopup extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(ticket.getLabel(), style: headline),
+            ClipRRect(
+              child: Container(
+                height: 175.0,
+                width: 300.0,
+                child: ClipRRect(
+                  child: Image.network(ticket.img_url, fit: BoxFit.fitHeight),
+                ),
+              ),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(height: 40),
-                const Text("Passenger Info"),
+                const SizedBox(height: 20),
+                Container(
+                    width: 300,
+                    height: 155,
+                    decoration: BoxDecoration(
+                        color: const Color(0xffe5e5e5),
+                        borderRadius: BorderRadius.circular(20.0)
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(ticket.name, style: headline2),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Amount: ", style: headline2),
+                                  Text(ticket.amount.toString(), style: TextStyle(fontSize: 18)),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Valid for: ", style: headline2),
+                                  Text('6 months', style: TextStyle(fontSize: 18)),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Token Cost:  ", style: headline2),
+                                  Row(
+                                    children: [
+                                      Text(ticket.token_cost.toString(), style: TextStyle(fontSize: 18)),
+                                      SizedBox(width: 5),
+                                      CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"))
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                ),
                 const SizedBox(height: 20),
                 Container(width: 300, height: 150, decoration: BoxDecoration(
-                    color: const Color(0xffe5e5e5),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
+                  color: const Color(0xffe5e5e5),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       CircleAvatar(
-                          radius: 45,
-                          backgroundImage: NetworkImage(loggedUser.img_url),
+                        radius: 45,
+                        backgroundImage: NetworkImage(loggedUser.img_url),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -116,35 +176,7 @@ class TicketPopup extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 40),
-                const Text("Tickets"),
-                const SizedBox(height: 20),
-                Container(
-                    width: 300,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffe5e5e5),
-                      borderRadius: BorderRadius.circular(20.0)
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text("Tokens Required: "+ ticket.token_cost.toString(), style: headline2),
-                                const SizedBox(height: 20,),
-                              ],
-                            ),
-                          )
-
-                ],
-                    )
-                ),
-                const SizedBox(height: 55),
+                const SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

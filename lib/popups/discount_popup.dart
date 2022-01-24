@@ -111,10 +111,27 @@ class DiscountPopup extends StatelessWidget {
                           padding: const EdgeInsets.all(20.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(discount.getLabel(), style: headline2),
                               const SizedBox(height: 20,),
                               Text(discount.description, style: headline4),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+
+                                children: [
+                                  Text("Shop: ", style: headline2),
+                                  Text(discount.shop.toString(), style: TextStyle(fontSize: 18)),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Amount: ", style: headline2),
+                                  Text(discount.amount.toString() + (discount.type == "percentage" ? '%' : '€'), style: TextStyle(fontSize: 18)),
+                                ],
+                              ),
                             ],
                           )
                       ),
@@ -129,7 +146,7 @@ class DiscountPopup extends StatelessWidget {
                                 Text("Tokens Required:", style: headline2),
                                 Row(
                                   children: [
-                                    Text(discount.token_cost.toString(), style: headline2),
+                                    Text(discount.token_cost.toString(), style: TextStyle(fontSize: 18)),
                                     SizedBox(width: 5),
                                     CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"))
                                   ],

@@ -57,18 +57,35 @@ class ActivityPopup extends StatelessWidget {
                       Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(activity.getLabel(), style: headline2),
                               const SizedBox(height: 20,),
                               Text(activity.description, style: headline4),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+
+                                children: [
+                                  Text("Max Participants: ", style: headline2),
+                                  Text(activity.max_number_participants.toString(), style: headline4),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Status: ", style: headline2),
+                                  Text(activity.status.toUpperCase(), style: headline4),
+                                ],
+                              ),
                             ],
                           )
                       ),
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,7 +93,7 @@ class ActivityPopup extends StatelessWidget {
                                 Text("Token Reward:", style: headline2),
                                 Row(
                                   children: [
-                                    Text(activity.token_reward.toString(), style: headline2),
+                                    Text(activity.token_reward.toString(), style: TextStyle(fontSize: 18)),
                                     SizedBox(width: 5),
                                     CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"))
                                   ],
