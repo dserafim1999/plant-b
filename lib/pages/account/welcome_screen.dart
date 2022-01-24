@@ -58,36 +58,39 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
-        description: "Activities such as Recycling, transporting other user's waste to Recycling Bins, participating in city-wide events, and many more...",
+        description: "Activities include Recycling, Eco-Events, Voluntary Work and more...",
         styleDescription: const TextStyle(
             color: Colors.white,
             fontSize: 20.0,
             fontStyle: FontStyle.italic,
             fontFamily: 'Raleway'),
         marginDescription: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
-        centerWidget: Padding(
-          padding: const EdgeInsets.all(8.0),
+        centerWidget: Container(
+          padding: EdgeInsets.all(10),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.room),
+                  Container(width: 100, height: 100, child: Icon(Icons.room, size: 100, color: Colors.white)),
                   Container(child: Text("Find an activity near you", style: TextStyle(fontSize: 18, color: Colors.white)))
                 ],
               ),
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.center_focus_strong),
-                  Text("Scan the QR Code at the location to register an activity", style: TextStyle(fontSize: 18, color: Colors.white))
+                  Container(width: 100, height: 100, child: Icon(Icons.qr_code_scanner, size: 100, color: Colors.white,)),
+                  Container(child: Text("Scan the QR Code at the location", style: TextStyle(fontSize: 18, color: Colors.white)))
                 ],
               ),
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CircleAvatar(backgroundColor: Colors.green, radius: 15),
-                  Text("Receive tokens", style: TextStyle(fontSize: 18, color: Colors.white))
+                  Container(width: 100, height: 85, child: CircleAvatar(radius: 10, backgroundImage: AssetImage("assets/token.png"))),
+                  Container(child: Text("Receive tokens", style: TextStyle(fontSize: 18, color: Colors.white)))
                 ],
               ),
             ],
@@ -104,13 +107,13 @@ class WelcomeScreenState extends State<WelcomeScreen> {
       Slide(
         title:
         "Rewards can be redeemed in exchange for Tokens",
-        maxLineTitle: 2,
+        maxLineTitle: 3,
         styleTitle: const TextStyle(
             color: Colors.white,
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
-        description: "Rewards include discounts and free public transportation tickets.",
+        description: "Tokens can be used to redeem Rewards.",
         styleDescription: const TextStyle(
             color: Colors.white,
             fontSize: 20.0,
@@ -122,7 +125,8 @@ class WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             CircleAvatar(
               backgroundColor: Colors.green,
-              radius: 75,
+              backgroundImage: AssetImage("assets/token.png"),
+              radius: 100,
             )
           ],
         ),
@@ -132,7 +136,64 @@ class WelcomeScreenState extends State<WelcomeScreen> {
         onCenterItemPress: () {},
       ),
     );
+
+    slides.add(
+      Slide(
+        title:
+        "Social interaction",
+        maxLineTitle: 2,
+        styleTitle: const TextStyle(
+            color: Colors.white,
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'RobotoMono'),
+        description: "Add Friends to check their progress and rankings",
+        styleDescription: const TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontStyle: FontStyle.italic,
+            fontFamily: 'Raleway'),
+        marginDescription: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
+        centerWidget: Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(width: 100, height: 100, child: Icon(Icons.qr_code_scanner, size: 100, color: Colors.white,)),
+                      Container(child: Text("Scan a Friend's Code to add them", style: TextStyle(fontSize: 18, color: Colors.white)))
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(width: 100, height: 100, child: Icon(Icons.person_add, size: 100, color: Colors.white)),
+                      Container(child: Text("Generate a QR Code for you", style: TextStyle(fontSize: 18, color: Colors.white)))
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(width: 100, height: 100, child: Icon(Icons.assessment, size: 100, color: Colors.white)),
+                      Container(child: Text("Check ranking on Leaderboard", style: TextStyle(fontSize: 18, color: Colors.white)))
+                    ],
+                  ),
+                ],
+              ),
+          ),
+        backgroundColor: const Color(0xff86C24B),
+        directionColorBegin: Alignment.topLeft,
+        directionColorEnd: Alignment.bottomRight,
+        onCenterItemPress: () {},
+      ),
+    );
   }
+
+
+
 
   void onDonePress() {
     Navigator.pushReplacement(

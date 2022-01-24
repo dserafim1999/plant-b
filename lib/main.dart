@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_b/pages/account/welcome_screen.dart';
 import 'package:plant_b/pages/activities/map.dart';
 import 'package:plant_b/pages/rewards/rewards.dart';
 import 'package:plant_b/pages/social/social.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: const SignIn(),
+      home: const WelcomeScreen(),
     );
   }
 }

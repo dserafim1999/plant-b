@@ -36,11 +36,25 @@ class Rewards extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Text(
-                                loggedUser.token_amount.toString(),
-                                style: TextStyle(
-                                    fontSize: 25
-                                ),
+                              FutureBuilder(
+                                initialData: loggedUser,
+                                future: fakeLogin(),
+                                builder: (context, AsyncSnapshot projectSnap) {
+                                  if (projectSnap.connectionState == ConnectionState.none &&
+                                      projectSnap.hasData == false) {
+                                    return Container();
+                                  } else if (projectSnap.hasData) {
+                                    User user = projectSnap.data;
+                                    return Text(
+                                      user.token_amount.toString(),
+                                      style: TextStyle(
+                                          fontSize: 25
+                                      )
+                                    );
+                                  } else {
+                                    return Container();
+                                  }
+                                }
                               ),
                               CircleAvatar(
                                 backgroundImage: AssetImage("assets/token.png"),

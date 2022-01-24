@@ -104,9 +104,10 @@ Future getLeaderboardPosition(bool isGlobal, int position) async {
   }
 }
 
-Future<void> fakeLogin() async {
+Future fakeLogin() async {
   loggedUser = await getUser(11111111);
   print("logged in");
+  return loggedUser;
 }
 
 User loggedUser = User(cc: 11111111, name: 'name', token_amount: 0, token_total: 0, email: 'email', password: 'password', img_url: 'https://www.ihep.org/wp-content/themes/ihep-theme/assets/images/user-profile.jpg');
