@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:plant_b/core/url.dart';
-import 'package:plant_b/models/activity.model.dart';
-import 'package:plant_b/models/discount.model.dart';
-import 'package:plant_b/models/ticket.model.dart';
 
 Future getAllUsers() async {
   final response = await http.get(Uri.parse(url+'/users'));
@@ -108,13 +105,8 @@ Future getLeaderboardPosition(bool isGlobal, int position) async {
 }
 
 Future<void> fakeLogin() async {
-  final response = await getUser(11111111);
-
-  if (response.statusCode == 200) {
-     loggedUser = User.fromJson(json.decode(response.body)[0]);
-  } else {
-    throw Exception('Failed to load user');
-  }
+  loggedUser = await getUser(11111111);
+  print("logged in");
 }
 
 User loggedUser = User(cc: 11111111, name: 'name', token_amount: 0, token_total: 0, email: 'email', password: 'password', img_url: 'https://www.ihep.org/wp-content/themes/ihep-theme/assets/images/user-profile.jpg');

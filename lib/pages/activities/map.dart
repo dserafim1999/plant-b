@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:plant_b/models/activity.model.dart';
 import 'package:plant_b/pages/activities/activities.dart';
 import 'package:plant_b/pages/scanner/scanner.dart';
+import 'package:plant_b/popups/activity_popup.dart';
 import 'package:plant_b/popups/code_popup.dart';
 import 'dart:async';
 
@@ -15,13 +17,47 @@ class ActivitiesMap extends StatefulWidget {
 }
 
 class _ActivitiesMapState extends State<ActivitiesMap> {
+  Set<Marker> _markers = {};
+  List<Activity> activities = [];
+  late BuildContext context;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _onMapCreated(GoogleMapController controller) async {
+    activities = await getAllActivities();
+    for (var a in activities) {
+      setState(() {
+        _markers.add(
+            Marker(
+              markerId: MarkerId(a.qr_code),
+              position: LatLng(a.location_x, a.location_y),
+              icon: BitmapDescriptor.defaultMarkerWithHue(90),
+              onTap: () {
+                openActivitiesDialog(a);
+              }
+            )
+        );
+      });
+    }
+  }
+
+  Future openActivitiesDialog(Activity activity) => showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ActivityPopup(activity: activity);
+      }
+  );
+
   static const double fabHeightClosed = 80.0;
   double fabHeight = fabHeightClosed;
 
   final panelController = PanelController();
   static const _initialCameraPosition = CameraPosition(
       target: LatLng(39.7443, -8.80725),
-      zoom: 15,
+      zoom: 16,
   );
 
 
@@ -30,6 +66,8 @@ class _ActivitiesMapState extends State<ActivitiesMap> {
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.05;
     final panelHeightOpen = MediaQuery.of(context).size.height;
 
+    this.context = context;
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.topCenter,
@@ -37,11 +75,14 @@ class _ActivitiesMapState extends State<ActivitiesMap> {
           SlidingUpPanel(
             controller: panelController,
             color: const Color(0xff86C24B),
-            body: const GoogleMap(
+            body: GoogleMap(
                 //mapType: MapType.hybrid,
                 initialCameraPosition: _initialCameraPosition,
                 myLocationButtonEnabled: false,
                 zoomControlsEnabled: false,
+                onMapCreated: _onMapCreated,
+                markers: _markers,
+
               ),
             panelBuilder: (controller) => Activities(
               controller: controller,

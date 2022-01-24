@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plant_b/models/discount.model.dart';
-import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/pages/activities/map.dart';
 import 'package:plant_b/pages/rewards/rewards.dart';
-import 'package:plant_b/pages/scanner/scanner.dart';
 import 'package:plant_b/pages/social/social.dart';
 import 'package:plant_b/pages/profile/profile.dart';
 import 'package:plant_b/pages/account/sign_in.dart';
@@ -54,12 +51,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fakeLogin();
   }
 
   @override

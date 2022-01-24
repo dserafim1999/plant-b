@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/separator.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:plant_b/models/user.model.dart';
 import 'package:plant_b/widget/input_box.dart';
 import 'package:plant_b/widget/main_button.dart';
 import 'package:plant_b/pages/account/sign_up.dart';
@@ -15,6 +16,13 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController userName = TextEditingController();
   TextEditingController userPass = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    fakeLogin();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
