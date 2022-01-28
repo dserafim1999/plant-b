@@ -34,7 +34,7 @@ Future getUser(int cc) async {
 }
 
 Future getUserFriends() async {
-  final response = await http.get(Uri.parse(url+'/users/${loggedUser.cc}/friends'));
+  final response = await http.get(Uri.parse(url+'/users/${loggedUser}/friends'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -69,8 +69,8 @@ Future deleteUserFriend(int cc1, int cc2) {
 
 Future getLeaderboard(bool isGlobal) async {
   final response = isGlobal ?
-    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/leaderboard')) :
-    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/friendleaderboard'));
+    await http.get(Uri.parse(url+'/users/${loggedUser}/leaderboard')) :
+    await http.get(Uri.parse(url+'/users/${loggedUser}/friendleaderboard'));
 
 
   if (response.statusCode == 200) {
@@ -87,8 +87,8 @@ Future getLeaderboard(bool isGlobal) async {
 
 Future getLeaderboardPosition(bool isGlobal, int position) async {
   final response = isGlobal ?
-    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/leaderboard')) :
-    await http.get(Uri.parse(url+'/users/${loggedUser.cc}/friendleaderboard'));
+    await http.get(Uri.parse(url+'/users/${loggedUser}/leaderboard')) :
+    await http.get(Uri.parse(url+'/users/${loggedUser}/friendleaderboard'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -104,13 +104,12 @@ Future getLeaderboardPosition(bool isGlobal, int position) async {
   }
 }
 
-Future fakeLogin() async {
-  loggedUser = await getUser(11111111);
-  print("logged in");
-  return loggedUser;
+Future login(int cc) async {
+  loggedUser = cc;
+  return await getUser(cc);
 }
 
-User loggedUser = User(cc: 11111111, name: 'name', token_amount: 0, token_total: 0, email: 'email', password: 'password', img_url: 'https://www.ihep.org/wp-content/themes/ihep-theme/assets/images/user-profile.jpg');
+int loggedUser = 11111111;
 
 class User {
   int cc;

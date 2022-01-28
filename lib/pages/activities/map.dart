@@ -56,7 +56,7 @@ class _ActivitiesMapState extends State<ActivitiesMap> {
 
   final panelController = PanelController();
   static const _initialCameraPosition = CameraPosition(
-      target: LatLng(39.7443, -8.80725),
+      target: LatLng(38.736772, -9.138954),
       zoom: 16,
   );
 

@@ -39,7 +39,7 @@ class _ScannerState extends State<Scanner> {
   @override
   Widget build(BuildContext context) {
     if(isActivity()) {
-      addUserActivity(loggedUser.cc, code);
+      addUserActivity(loggedUser, code);
       return FutureBuilder(
         future: getActivity(code),
         builder: (context, AsyncSnapshot projectSnap) {
@@ -64,7 +64,7 @@ class _ScannerState extends State<Scanner> {
         },
       );
     } else if(isFriend()) {
-      addUserFriend(loggedUser.cc, int.parse(code));
+      addUserFriend(loggedUser, int.parse(code));
       return FutureBuilder(
         future: getUser(int.parse(code)),
         builder: (context, AsyncSnapshot projectSnap) {

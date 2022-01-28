@@ -147,7 +147,7 @@ class _LeaderboardState extends State<Leaderboard> {
                   padding: EdgeInsets.fromLTRB(5, 5, 10, 5),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: user.cc == loggedUser.cc ? Colors.grey.withOpacity(0.2) : Colors.white,
+                        color: user.cc == loggedUser ? Colors.grey.withOpacity(0.2) : Colors.white,
                         borderRadius: BorderRadius.circular(20.0)
                     ),
                     child: Row(

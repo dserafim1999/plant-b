@@ -22,11 +22,12 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Plant B',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: const WelcomeScreen(),
+      home: const SignIn(),
     );
   }
 }

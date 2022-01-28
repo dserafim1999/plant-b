@@ -57,7 +57,7 @@ class DiscountPopup extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.pop(context);
-                          addUserDiscount(loggedUser.cc, discount.qr_code);
+                          addUserDiscount(loggedUser, discount.qr_code);
                           openCodeDialog();
                         },
                         style: ElevatedButton.styleFrom(

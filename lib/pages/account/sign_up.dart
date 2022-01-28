@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plant_b/core/separator.dart';
 import 'package:plant_b/core/styles.dart';
+import 'package:plant_b/core/url.dart';
+import 'package:plant_b/pages/account/sign_in.dart';
 import 'package:plant_b/pages/account/welcome_screen.dart';
 import 'package:plant_b/widget/main_button.dart';
 import 'package:plant_b/widget/input_box.dart';
@@ -80,7 +82,10 @@ class _SignUpPageState extends State<SignUpPage> {
               Separator(height: 20.0),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SignIn()),
+                  );
                 },
                 child: RichText(
                   text: TextSpan(children: [

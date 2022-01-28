@@ -57,7 +57,7 @@ class TicketPopup extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.pop(context);
-                          addUserTicket(loggedUser.cc, ticket.qr_code);
+                          addUserTicket(loggedUser, ticket.qr_code);
                           openCodeDialog();
                         },
                         style: ElevatedButton.styleFrom(
@@ -154,27 +154,41 @@ class TicketPopup extends StatelessWidget {
                     )
                 ),
                 const SizedBox(height: 20),
-                Container(width: 300, height: 150, decoration: BoxDecoration(
-                  color: const Color(0xffe5e5e5),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 45,
-                        backgroundImage: NetworkImage(loggedUser.img_url),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(loggedUser.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text("ID: " + loggedUser.cc.toString())
-                        ],
-                      )
-                    ],
-                  ),
+                FutureBuilder(
+                    future: login(loggedUser),
+                    builder: (context, AsyncSnapshot projectSnap) {
+                      if (projectSnap.connectionState == ConnectionState.none &&
+                          projectSnap.hasData == false) {
+                        return Container();
+                      } else if (projectSnap.hasData) {
+                        User user = projectSnap.data;
+
+                        return Container(width: 300, height: 150, decoration: BoxDecoration(
+                          color: const Color(0xffe5e5e5),
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              CircleAvatar(
+                                radius: 45,
+                                backgroundImage: NetworkImage(user.img_url),
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(user.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                  Text("ID: " + user.cc.toString())
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    }
                 ),
                 const SizedBox(height: 25),
                 Row(

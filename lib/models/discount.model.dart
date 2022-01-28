@@ -41,6 +41,23 @@ Future getAllUserDiscounts(int cc) async {
   }
 }
 
+Future getRecommendedDiscounts() async {
+  final response = await http.get(Uri.parse(url + '/discounts'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    List<Discount> discounts = List<Discount>.from(l.map((model)=> Discount.fromJson(model)));
+    discounts.shuffle();
+    return discounts.sublist(0, (discounts.length/2).round());
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load discounts');
+  }
+}
+
 Future getDiscount(String code) {
   return http.get(Uri.parse(url+'/discounts/$code'));
 }

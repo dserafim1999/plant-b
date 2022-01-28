@@ -25,7 +25,7 @@ class _FriendsPopupState extends State<FriendsPopup> {
   Future openCodeDialog() => showDialog(
       context: context,
       builder: (BuildContext context) {
-        return CodePopup(label:"Your Code", qrCodeValue: loggedUser.cc.toString(), description: "Let your friends scan your code to add you to their friends list. They will not be added to your Friends in return.",);
+        return CodePopup(label:"Your Code", qrCodeValue: loggedUser.toString(), description: "Let your friends scan your code to add you to their friends list. They will not be added to your Friends in return.",);
       }
   );
 
@@ -62,7 +62,7 @@ class _FriendsPopupState extends State<FriendsPopup> {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        deleteUserFriend(loggedUser.cc, user.cc);
+                        deleteUserFriend(loggedUser, user.cc);
                         setState(() { _myData = getUserFriends(); });
                       },
                       style: ElevatedButton.styleFrom(
@@ -87,7 +87,7 @@ class _FriendsPopupState extends State<FriendsPopup> {
     Future openCodeDialog() => showDialog(
         context: context,
         builder: (BuildContext context) {
-          return CodePopup(label:"Your Code", qrCodeValue: loggedUser.cc.toString(), description: "Let your friends scan your code so you can be added to their friends list. They will not be added to your friends.");
+          return CodePopup(label:"Your Code", qrCodeValue: loggedUser.toString(), description: "Let your friends scan your code so you can be added to their friends list. They will not be added to your friends.");
         }
     );
 

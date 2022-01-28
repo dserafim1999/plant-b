@@ -36,7 +36,7 @@ class ProfileCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const <Widget>[
               Text(
-                  "My Activities",
+                  "Completed Activities",
                   style: headline1
               ),
             ],),
@@ -46,7 +46,7 @@ class ProfileCarousel extends StatelessWidget {
           height: 300,
           child: FutureBuilder(
             initialData: const [],
-            future: getAllUserActivities(loggedUser.cc),
+            future: getAllUserActivities(loggedUser),
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {
@@ -62,7 +62,8 @@ class ProfileCarousel extends StatelessWidget {
                           tokens: activity.token_reward.toString(),
                           positive: true,
                           img_url: activity.img_url,
-                          onTap: () { }
+                          onTap: () { },
+                          inactive: true,
                       );
                     }
                 );
@@ -88,7 +89,7 @@ class ProfileCarousel extends StatelessWidget {
           height: 300,
           child: FutureBuilder(
             initialData: const [],
-            future: getAllUserDiscounts(loggedUser.cc),
+            future: getAllUserDiscounts(loggedUser),
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {
@@ -131,7 +132,7 @@ class ProfileCarousel extends StatelessWidget {
           height: 300,
           child: FutureBuilder(
             initialData: const [],
-            future: getAllUserTickets(loggedUser.cc),
+            future: getAllUserTickets(loggedUser),
             builder: (context, AsyncSnapshot projectSnap) {
               if (projectSnap.connectionState == ConnectionState.none &&
                   projectSnap.hasData == false) {

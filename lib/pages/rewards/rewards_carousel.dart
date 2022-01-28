@@ -40,7 +40,7 @@ class _RewardsCarouselState extends State<RewardsCarousel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const <Widget>[
               Text(
-                  "Discounts",
+                  "All Discounts",
                   style: headline1
               ),
             ],),
@@ -82,7 +82,7 @@ class _RewardsCarouselState extends State<RewardsCarousel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const <Widget>[
               Text(
-                  "Transportation Tickets",
+                  "All Transportation Tickets",
                   style: headline1
               ),
             ],),
@@ -109,6 +109,48 @@ class _RewardsCarouselState extends State<RewardsCarousel> {
                           positive: false,
                           img_url: ticket.img_url,
                           onTap: () { openTicketsDialog(ticket); }
+                      );
+                    }
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const <Widget>[
+              Text(
+                  "Recommended Discounts",
+                  style: headline1
+              ),
+            ],),
+        ),
+        const SizedBox(height: 20),
+        SizedBox(
+          height: 300,
+          child: FutureBuilder(
+            initialData: const [],
+            future: getRecommendedDiscounts(),
+            builder: (context, AsyncSnapshot projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.none &&
+                  projectSnap.hasData == false) {
+                return Container();
+              } else if (projectSnap.hasData) {
+                return  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: projectSnap.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Discount discount = projectSnap.data[index];
+                      return CarouselItem(
+                          label: discount.getLabel(),
+                          tokens: discount.token_cost.toString(),
+                          positive: false,
+                          img_url: discount.img_url,
+                          onTap: () { openDiscountsDialog(discount); }
                       );
                     }
                 );

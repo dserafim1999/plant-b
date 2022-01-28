@@ -25,6 +25,7 @@ Widget InputBox({
         Container(
           width: 270.0,
           child: TextField(
+            controller: controller,
             textAlignVertical: TextAlignVertical.center,
             obscureText: isObs,
             keyboardType: keyBordType,

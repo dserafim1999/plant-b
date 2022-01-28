@@ -16,8 +16,7 @@ class _ProfileState extends State<Profile> {
       child: Column(
         children: <Widget>[
           FutureBuilder(
-              initialData: loggedUser,
-              future: fakeLogin(),
+              future: login(loggedUser),
               builder: (context, AsyncSnapshot projectSnap) {
                 if (projectSnap.connectionState == ConnectionState.none &&
                     projectSnap.hasData == false) {
